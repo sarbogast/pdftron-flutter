@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -212,6 +211,7 @@ class _ViewerState extends State<Viewer> {
     });
 
     await controller.openDocument(_document, config: config);
+    debugPrint('document opened');
   }
 
   Future<void> _showMyDialog() async {
