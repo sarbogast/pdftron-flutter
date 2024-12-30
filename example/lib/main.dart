@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdftron_flutter/pdftron_flutter.dart';
+import 'package:pdftron_flutter_example/file_from_assets.dart';
 // If you are using local files, add the permission_handler
 // dependency to pubspec.yaml and uncomment the line below.
 // import 'package:permission_handler/permission_handler.dart';
@@ -28,8 +29,8 @@ class Viewer extends StatefulWidget {
 
 class _ViewerState extends State<Viewer> {
   String _version = 'Unknown';
-  String _document =
-      "https://pdftron.s3.amazonaws.com/downloads/pl/PDFTRON_mobile_about.pdf";
+  //String _document =
+  //    "https://pdftron.s3.amazonaws.com/downloads/pl/PDFTRON_mobile_about.pdf";
   bool _showViewer = true;
 
   @override
@@ -100,7 +101,9 @@ class _ViewerState extends State<Viewer> {
       print("document loaded: $filePath");
     });
 
-    await PdftronFlutter.openDocument(_document, config: config);
+    final file =
+        await 'pdfs/Coulais__Bruno-Vois_sur_ton_chemin.pdf'.getFileFromAsset();
+    await PdftronFlutter.openDocument(file.path, config: config);
 
     try {
       // The imported command is in XFDF format and tells whether to add,
@@ -210,7 +213,9 @@ class _ViewerState extends State<Viewer> {
       _showMyDialog();
     });
 
-    await controller.openDocument(_document, config: config);
+    final file =
+        await 'pdfs/Coulais__Bruno-Vois_sur_ton_chemin.pdf'.getFileFromAsset();
+    await controller.openDocument(file.path, config: config);
     debugPrint('document opened');
   }
 
